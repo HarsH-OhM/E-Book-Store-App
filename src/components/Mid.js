@@ -20,7 +20,6 @@ const Mid = () => {
     const cardStyle = {
         float: 'left 5px',
         // width: '370px',
-        // margin: '10px',
         position: 'relative',
         borderradius: '5px',
         padding: ' 20px',
@@ -169,6 +168,8 @@ const Mid = () => {
 
                                     }) 
                             }
+
+                            
 
                             </div>
 
