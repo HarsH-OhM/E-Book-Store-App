@@ -26,18 +26,24 @@ const addBook = book => {
     setBooks([...books, book])
     
     }
+
+    const deleteBook = id => {
+        setBooks(books.filter(book => book.id !== id))
+        }
+
+    
  
 return (
 <div className="container">
-<h2 className="text-center">Add Your Fav Books info Here..!!</h2>
+<h2 className="text-center" style={{ paddingTop:"15px" }}>Add Your Fav Books info Here..!!</h2>
 
 <div>
 
-<div className="row">
+<div className="row" style={{ paddingTop:"40px"}}>
 
 
 
-<div className="col-md-6 col-md-offset-2">
+<div className="col-md-6 col-md-offset-2" style={{border:"5px solid olive"}}>
 
 <h3 className="text-center">Add Books</h3>
 
@@ -50,12 +56,12 @@ return (
 </div>
 
 
-<div className="col-md-6 col-md-offset-2">
+<div className="col-md-6 col-md-offset-2" style={{border:"5px solid olive"}}>
 
 <h3 className="text-center">Book List</h3>
 
 
-<Booktable books={books}/>
+<Booktable books={books} deleteBook={deleteBook} />
 </div>
 </div>
 </div>
