@@ -28,7 +28,7 @@ const Navbar = () => {
             iconClassNameRight="muidocs-icon-navigation-expand-more">
             <Toolbar>
                 <IconButton edge="start" color="inherit" aria-label="menu">
-                    <MenuIcon />
+                <NavLink   style={{color:"white"}} to="/"><MenuIcon /></NavLink>
                 </IconButton>
                 
 
