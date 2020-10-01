@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-
+import {connect } from 'react-redux'
+import { add } from '../store/action/index'; 
+import {useDispatch} from 'react-redux'
 const Addbook = props => {
 
     const initialFormState =
@@ -11,6 +13,9 @@ const Addbook = props => {
     }
 
     const [book, setBook] = useState(initialFormState)
+    const dispatch = useDispatch(); 
+     
+
 
     const handleInputChange = event => {
         const { name, value } = event.target
@@ -23,6 +28,7 @@ const Addbook = props => {
         if (!book.bookTitle || !book.description || !book.publisher) return
 
         props.addBook(book);
+        dispatch(add(book));
         setBook(initialFormState);
     }
 
@@ -36,4 +42,4 @@ const Addbook = props => {
     )
 }
 
-export default Addbook;
+export default connect()(Addbook);
