@@ -4,10 +4,14 @@ import Navbar from './components/Navbar'
 import Mid from './components/Mid'
 
 
+
 import './App.css';
 import CardsUp from './components/cardsup';
 
 function Home() {
+
+
+
   return (
     <div className="Home">
 
