@@ -3,13 +3,20 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar'
 import MenuIcon from '@material-ui/icons/Menu'
 //  import {classes }from '@material-ui/core/styles'
-
+import {useState} from 'react'
 import { Toolbar, IconButton, Typography, Button } from '@material-ui/core'
 import {NavLink} from 'react-router-dom'
 import '../index.css';
 
 const Navbar = () => {
 
+    const [change, SetChange] = useState('"#1AB394');
+    const clickme= () =>{
+        let color = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+        // SetChange("#1AB394");
+        SetChange(color);
+
+    }
 
     return (
         // <AppBar style={{background: '#1AB394'}}
@@ -24,11 +31,11 @@ const Navbar = () => {
 
         //        </AppBar>
 
-        <AppBar position="static" style={{ background: '#1AB394' }}
-            iconClassNameRight="muidocs-icon-navigation-expand-more">
+        <AppBar position="static" 
+            iconClassNameRight="muidocs-icon-navigation-expand-more" style={{ background: change }}>
             <Toolbar>
-                <IconButton edge="start" color="inherit" aria-label="menu">
-                <NavLink   style={{color:"white"}} to="/"><MenuIcon /></NavLink>
+                <IconButton edge="start" color="inherit" aria-label="menu" >
+                <NavLink   style={{color:"white"}} to="/"><MenuIcon  onClick={clickme} /></NavLink>
                 </IconButton>
                 
 
@@ -37,6 +44,7 @@ const Navbar = () => {
                 <span><NavLink   to="/">HOME</NavLink></span>
                 <span><NavLink  to="/form">FORM</NavLink></span>
                 {/* <span><NavLink   to="#">ABOUT</NavLink></span> */}
+                <Button color="inherit" onClick={clickme}>clickme</Button>
                 </div>
                 <Typography >
                 <marquee behavior="scroll" direction="DOWN">Hello..!</marquee>
