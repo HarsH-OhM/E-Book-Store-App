@@ -21,7 +21,7 @@ function CardsUp() {
     const [btn1books, setBtn1Books] = useState({ items: [] });
     const [errorshow, setErrorshow] = useState(false);
 
-
+   
 
 
 
@@ -47,6 +47,7 @@ function CardsUp() {
             // console.log(result.data);
         } catch (error) {
             setErrorshow(true);
+            alert(error);
 
         }
 
@@ -69,6 +70,7 @@ function CardsUp() {
     };
 
 
+   
 
     return (
 
@@ -87,12 +89,13 @@ function CardsUp() {
 
 
 
+
                         <div class="card" style={{ border: " 5px solid olive" }}>
-                        <img src="https://pyxis.nymag.com/v1/imgs/171/429/c95b07becc2bef532d9669b4824ea4386f-08-harry-potter.rhorizontal.w700.jpg" height="300px" alt="photo"/>
+                        <img src="https://pyxis.nymag.com/v1/imgs/171/429/c95b07becc2bef532d9669b4824ea4386f-08-harry-potter.rhorizontal.w700.jpg" height="300px" alt="potter"/>
                             <div class="card-body">
                                 <h5 class="card-title">HARRY POTTER</h5>
                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <button class="btn btn-info" value={"Harry Potter"} onClick={showModal}>Get Books info.</button>
+                                <button class="btn btn-info" value={"Harry Potter"} onClick={showModal} eroor={errorshow}>Get Books info.</button>
                                 <p></p>
                                 <button class="btn btn-outline-warning" style={{ borderRadius:"20px"}} onClick={()=> dispatch(like())}><i class="fa fa-thumbs-up" style={{fontsize:"48px" , color:"red"}}>{likeme}</i>
 </button>
@@ -102,7 +105,7 @@ function CardsUp() {
                     <div class="col-sm-4">
 
                         <div class="card" style={{ border: " 5px solid olive" }}>
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSjuPGwhNDtaQCXDz1bc8GlqNQwisRpddvPCg&usqp=CAU" height="300px" alt="photo"/>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSjuPGwhNDtaQCXDz1bc8GlqNQwisRpddvPCg&usqp=CAU" height="300px" alt="annefrank"/>
                             <div class="card-body">
                                 <h5 class="card-title">ANNE FRANK</h5>
                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
@@ -116,7 +119,7 @@ function CardsUp() {
                     <div class="col-sm-4">
 
                         <div class="card" style={{ border: " 5px solid olive" }}>
-                        <img src="https://i.pinimg.com/originals/f9/19/3b/f9193bbd0b0006cae6107a2ce597295a.png" height="300px" alt="photo"/>
+                        <img src="https://i.pinimg.com/originals/f9/19/3b/f9193bbd0b0006cae6107a2ce597295a.png" height="300px" alt="avangers"/>
                             <div class="card-body">
                                 <h5 class="card-title">The Avengers</h5>
                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
