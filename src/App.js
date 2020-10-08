@@ -4,18 +4,24 @@ import Navbar from './components/Navbar'
 import Mid from './components/Mid'
 import Home from './Home'
 import Api from './Api'
-
+import {useState} from 'react'
 import Bookcrud from './compo2/Bookcrud'
 import  BookDetailPage from './components/bookdetailpage'
 import {BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import './App.css';
 
-function App() {
+function App(props) {
+
+ 
+
+  
+
+
   return (
     <BrowserRouter>
     <div>
-      <Navbar/>
+      <Navbar />
     <Switch>
       <Route path="/" component={Home} exact />
       <Route path="/book/:bookId" exact component={BookDetailPage} />
