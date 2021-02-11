@@ -1,23 +1,14 @@
+import React from 'react';
+import  './Loader.css';
+
+
+export const Loader = () =>(
   
 
-import React from "react";
+    <div   className="spinner">
+    <div className="loader"
+  
+    ></div>
+    </div>
 
-const Loader =  ({ loading, children}) => {
-  return (
-    <>
-      {loading && (
-        <div
-          style={{
-            color: "green",
-            textalign: "center",
-            padding: "20px 0"
-          }}
-        >
-          {children}
-        </div>
-      )}
-    </>
-  );
-};
-
-export default Loader;
+);

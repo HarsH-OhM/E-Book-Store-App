@@ -2,14 +2,16 @@ import React, { useEffect, useState } from 'react';
 import 'react-bootstrap'
 import axios from 'axios'
 import '../index.css';
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import 'font-awesome/css/font-awesome.min.css';
 import CardText from '@material-ui/core/Card'
-
 import SearchBar from 'material-ui-search-bar';
-import Loader from '../components/loader'
+import {Loader} from './loader';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { useSelector } from 'react-redux';
 
 import {
+
     Card, CardActions, CardHeader, CardMedia
 } from '@material-ui/core';
 
@@ -26,17 +28,24 @@ const Mid = () => {
         margin: '10px',
         width: '100%',
 
-        flexbasis: 'width'
+        flexbasis: 'width',
+
+        // boxShadow: "5px 5px 5px 5px #888888"
 
 
     };
 
 
+    const history = useHistory();
 
     const [searchip, setSearchip] = useState('');
     const [mybooks, setMyBooks] = useState({ items: [] });
     const [loading, setLoading] = useState(false);
     const [errorshow, setErrorshow] = useState(false);
+
+    const [loadingStart, setLoadingStart] = useState(false);
+
+    const reducerData = useSelector((state) => state.addme);
 
 
     const onInputChange = (e) => {
@@ -59,23 +68,27 @@ const Mid = () => {
 
     const fetchBooks = async () => {
         setLoading(true);
+       
         setErrorshow(false);
 
         try {
             const result = await axios.get(`${URL}?q=${searchip}`);
             setMyBooks(result.data);
+            setLoading(false);
             console.log(result.data);
         } catch (error) {
             setErrorshow(true);
+            setLoading(false);
             console.log(error);
-            alert("000ps.. error occured..!!");
-            window.location.href = '/';
+            // alert("000ps.. error occured..!!");
+            // window.location.href = '/';
+            // history.push('/');
 
             
            
 
         }
-        setLoading(false);
+        
         
     }
 
@@ -84,7 +97,9 @@ const Mid = () => {
 
     return (
 
+       
         <div className="mid">
+             {loading &&  <Loader/>}
             <div class="row" style={{ textAlign: "center" }}>
 
                 <div class="col-md-12" >
@@ -96,7 +111,7 @@ const Mid = () => {
                         <form onSubmit={onSubmitHandler} style={{ margin: "auto", padding: "10px" }}>
                             <label>
                                 <span>Search for books:</span></label>
-                            <div class="input-group" style={{ width: "auto", textalign: "center" }}>
+                            <div class="input-group m-3" style={{ width: "auto", textalign: "center" }}>
                                 <input type="search"
                                     placeholder="Type here to get your fav book..."
                                     value={searchip}
@@ -120,19 +135,23 @@ const Mid = () => {
 
                         <div className="books">
 
-                            <Loader loading={loading}>
-                                fetching Books for {searchip}
-                            </Loader>
+                            {/* <Loader loading={loading}>
+                            <div className="load" style={{border:"10px solid green", position:"relative" , backgroundColor:"white", marginLeft:"10px" }}>
+                                <p>fetching Books for {searchip}</p>
+                                </div>
+                            </Loader> */}
 
-                            {errorshow && (
-                                <p style={{ textAlign: "center" }}>Some error occurred, while fetching the Books.</p>
-                            )}
+                            {/* {errorshow && (
+        <p>Some error occurred, while fetching books API</p>
+      )} */}
 
-                            {
+                           
+
+                            { !errorshow &&  mybooks.items && (mybooks.items.length>0) ?
                                 mybooks.items.map((book, index) => {
                                     return (
 
-                                        <div className="book">
+                                        <div className="book" style={{backgroundColor: reducerData.changedColor}}>
                                             <ul>
                                                 <li key={index}>
                                                     <p>Book {index + 1}</p>
@@ -166,7 +185,13 @@ const Mid = () => {
 
                                     )
 
-                                    }) 
+                                     })  : ( errorshow && 
+                                        <div className="errorm" style={{border:"10px solid red", position:"relative" , backgroundColor:"white", marginLeft:"10px" }}>
+                                        <p style={{ textAlign: "center" , color:"red" }}>Some error occurred, while fetching the Books.</p>
+                                        </div>
+                                     ) 
+                                    
+                                    
                             }
 
                             

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 import BookDetail from "../components/bookDetail";
-import Loader from "../components/loader";
+import {Loader} from "./loader";
 
 
 const BookDetailPage = ({ match }) => {
@@ -30,10 +30,12 @@ const BookDetailPage = ({ match }) => {
       try {
         const result = await axios.get(`${URL}/${bookId}`);
         setBook(result.data);
+        setLoading(false);
       } catch (error) {
         setError(true);
+        setLoading(false);
       }
-      setLoading(false);
+      
     };
     
     fetchBook();
@@ -42,6 +44,7 @@ const BookDetailPage = ({ match }) => {
   return (
     <>
       {/* <Link to={`/`}>Go back to search books</Link> */}
+      {loading && <Loader/>}
       <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><Link to={`/`}>Go back to search books</Link></li>
@@ -49,10 +52,11 @@ const BookDetailPage = ({ match }) => {
     <li class="breadcrumb-item active" aria-current="page"><Link to={`/form`}>Add Book</Link></li>
   </ol>
 </nav>
-      <Loader loading={loading}>
+      {/* <Loader loading={loading}>
      
         loading book detail for book ID <strong>{bookId}</strong>
-      </Loader>
+      </Loader> */}
+     
       {error && (
         <p>Some error occurred, while fetching books API</p>
       )}

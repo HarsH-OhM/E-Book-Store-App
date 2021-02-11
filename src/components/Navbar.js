@@ -8,13 +8,17 @@ import { Toolbar, IconButton, Typography, Button } from '@material-ui/core'
 import {NavLink} from 'react-router-dom'
 import '../index.css';
 
+import {setChangeColor} from '../store/action/index';
+import { useSelector, useDispatch } from 'react-redux';
 const Navbar = () => {
 
     const [change, SetChange] = useState('"#1AB394');
+    const dispatch = useDispatch();
     const clickme= () =>{
         let color = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
         // SetChange("#1AB394");
         SetChange(color);
+        dispatch(setChangeColor(color));
 
     }
 

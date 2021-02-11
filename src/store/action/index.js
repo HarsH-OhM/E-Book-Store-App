@@ -34,3 +34,11 @@ export const del = (id) => {
     }
 };
 
+export const setChangeColor = (color) => {
+    return{
+        type:'SET_CHANGE_COLOR',
+        color:color,
+        
+    }
+};
+
